@@ -1,0 +1,74 @@
+# 多链钱包生成器配置文件
+
+# 生成器配置
+generator:
+  # 默认生成数量
+  default_count: 5000
+  # 默认使用助记词
+  use_mnemonic: false
+  # 批量生成时的默认数量
+  batch_default_count: 100
+
+# 协程池配置
+worker_pool:
+  # 自动检测协程数（基于CPU核心数）
+  auto_detect: true
+  # 手动指定协程数（当auto_detect为false时使用）
+  manual_count: 24
+  # 协程数倍数（CPU核心数 * multiplier）
+  cpu_multiplier: 2
+  # 最小协程数
+  min_workers: 4
+  # 最大协程数
+  max_workers: 32
+
+# 地址匹配配置
+address_matching:
+  # 是否启用地址匹配
+  enabled: true
+  # 匹配规则
+  rules:
+    # 是否忽略大小写
+    ignore_case: false
+    # 前缀匹配（支持多个，示例：寻找以"888"开头的地址）
+    prefixes: []
+    # 后缀匹配（支持多个，示例：寻找以"888"结尾的地址）
+    suffixes:
+      - "12345678"
+      - "87654321"
+      - "trxtrxtrx"
+    # 包含字符串匹配（示例：寻找包含"love"的地址） contains: []
+    # 正则表达式匹配（示例：寻找包含重复数字的地址）
+    # regex: "(\\d){3,}"
+    # 最后位数连续相同的地址（匹配末尾8个或更多相同字符）
+    suffix_same: 8
+    regex: ""
+  # 匹配链类型（eth, btc, tron, bsc, polygon, all）,只有第一个才会匹配
+  target_chains: ["tron"]
+  # 最大尝试次数（0表示无限制）
+  max_attempts: 0
+  # 最大匹配次数（0表示无限制）
+  max_match: 0
+
+# 性能测试配置
+performance:
+  # 是否在启动时运行性能测试
+  auto_benchmark: false
+  # 测试样本数量,要把address_matching.enabled设置为false
+  test_samples: 30000
+  # 测试协程数范围
+  worker_range:
+    min: 4
+    max: 25
+    step: 2
+
+# 输出配置
+output:
+  # 是否显示详细信息
+  verbose: true
+  # 批量生成时显示的钱包数量
+  preview_count: 5
+  # 是否保存到文件
+  save_to_file: true
+  # 输出文件路径
+  output_file: "wallets.txt"
