@@ -36,7 +36,7 @@
 
 1. **克隆项目**
 ```bash
-git clone <your-repo>
+git clone https://github.com/aiminitoys/wallet-address-tool
 cd wallet_create_address
 ```
 
